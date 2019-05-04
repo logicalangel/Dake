@@ -1,4 +1,4 @@
-# digiNode
+# Dake
 
 ![digi_node](https://user-images.githubusercontent.com/12640517/55111276-ac566c80-50f7-11e9-90ab-1e44568aabcf.png)
 <br/>
@@ -305,12 +305,6 @@ You can re-order menu items by clicking and dragging the arrows icon and placing
 You may want to create a static page to show contact details, about us, shipping information etc.
 
 New static pages are setup via `/admin/settings/pages`.
-
-## TODO
-
-- Add some tests...
-- Separate API and frontend
-- Modernize the frontend
 
 ## Contributing
 
