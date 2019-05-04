@@ -230,7 +230,7 @@ let store = new MongoStore({
 
 app.enable('trust proxy');
 app.use(helmet());
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -369,7 +369,7 @@ MongoClient.connect(config.databaseConnectionString, {}, (err, client) => {
         .then(() => {
             // lift the app
             app.emit('appStarted');
-            console.log(colors.green('expressCart running on host: http://localhost:' + app.get('port')));
+            console.log(colors.green('DAKE running on host: http://localhost:' + app.get('port')));
         })
         .catch((err) => {
             console.error(colors.red('Error setting up indexes:' + err));

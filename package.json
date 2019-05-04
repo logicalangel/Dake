@@ -1,7 +1,7 @@
 {
-  "name": "digi-node",
-  "version": "0.1.1",
-  "description": "digiNode is a fully functional persian shopping cart built in Node.js (Express, MongoDB) with Stripe, PayPal and Authorize.net payments. (forked from https://demo.expresscart.markmoffat.com)",
+  "name": "dake",
+  "version": "0.2.0",
+  "description": "Dake is a simple ecommerce app that built in NodeJS-Mongo",
   "private": false,
   "scripts": {
     "start": "node app.js",
@@ -48,7 +48,7 @@
     "uglifycss": "0.0.27"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^1.4.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-standard": "^10.2.1",
@@ -77,15 +77,14 @@
     "cart",
     "shopping"
   ],
-  "author": "nimahkh (nima habibkhoda)",
-  "homepage": "",
+  "author": "LogicalAngel (Amir Rastegar)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nimahkh/digiNode"
+    "url": "https://github.com/logicalangel/dake"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nimahkh/digiNode/issues"
+    "url": "https://github.com/logicalangel/dake/issues"
   },
   "engines": {
     "node": "8.x"

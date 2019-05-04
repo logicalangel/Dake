@@ -1,6 +1,6 @@
 {
-    "cartTitle": "دیجی نود",
-    "cartDescription": " فروشگاه",
+    "cartTitle": "گالری فیروزه",
+    "cartDescription": " تولید و عرضه بدلیجات و دستبند ها دست ساز و زیبا",
     "cartLogo": "images/digi_node.png",
     "baseUrl": "http://localhost:1111",
     "emailHost": "smtp-mail.outlook.com",
@@ -24,6 +24,6 @@
     "databaseConnectionString": "mongodb://127.0.0.1:27017/shop",
     "theme": "Cloth",
     "trackStock": false,
-    "env": "",
+    "env": ".min",
     "themeViews": "../views/themes/Cloth/"
 }

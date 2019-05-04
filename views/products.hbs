@@ -1,49 +1,52 @@
-<div class="col-lg-9">
-    <div class="col-lg-12">
-        <h2>کالاها</h2>
-    </div>
-    <div class="col-lg-12 search_bar">
-        <div class="input-group">
-            <input type="text" name="product_filter" id="product_filter" class="form-control input-lg" placeholder="فیلتر کالاها">
-            <span class="input-group-btn">
-                <button class="btn btn-success btn-lg" id="btn_product_filter">فیلتر</button>
-                <a href="/admin/products" class="hidden-xs btn btn-warning btn-lg"><i class="fa fa-times" aria-hidden="true"></i></a>
-            </span>
-        </div>
-        <p class="text-warning top-pad-10">کالاها میتوانند بر اساس : نام کالا و یا توضیحات ، فیلتر شوند . </p>
-    </div>
-    {{#if results}}
-        <div class="col-lg-12">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="pull-right"><strong>منتشر شده</strong></span>
-                    <strong> <span class="text-danger">جستجو شده با: {{searchTerm}} </span></strong>
-                </li>
-                {{#each results}}
-                    <li class="list-group-item">
-                        <h4 class="pull-right text-danger" style="padding-left: 10px;"><a class="text-danger" href="/admin/product/delete/{{this._id}}" onclick="return confirm('آیا از حذف کالا اطمینان دارید؟');"> <i class="fa fa-trash-o"></i></a></h4>
-                        <h4 class="pull-right"><input id="{{this._id}}" class="published_state" type="checkbox" {{checkedState this.productPublished}}></h4>
-                        <h5><a href="/admin/product/edit/{{this._id}}">{{this.productTitle}}</a></h5>
-                    </li>
-                {{/each}}
-            </ul>
-        </div>
-    {{else}}
-        <div class="col-lg-12">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="pull-right"><strong> کالاهای اخیر </strong></span>
-                    <strong>منتشر شده</strong>
-                </li>
-                {{#each top_results}}
-                    <li class="list-group-item">
-                        <h4 class="pull-right" style="padding-left: 10px;"><a class="text-danger" href="/admin/product/delete/{{this._id}}" onclick="return confirm('آیا از حذف کالا اطمینان دارید؟');"> <i class="fa fa-trash-o"></i></a></h4>
-                        <h4 class="pull-right"><input id="{{this._id}}" class="published_state" type="checkbox" {{checkedState this.productPublished}}></h4>
-                        <h5><a href="/admin/product/edit/{{this._id}}">{{this.productTitle}}</a></h5>
-                    </li>
-                {{/each}}
-            </ul>
-        </div>
-    {{/if}}
+<div class="col s12">
+    <h2>کالاها</h2>
 </div>
+<div class="col s12 search_bar">
+    <div class="row">
+        <input type="text" name="product_filter" id="product_filter" class="col s12 m10 l11 right"
+            placeholder="فیلتر کالاها">
+        <button class="btn green right col s12 m2 l1" id="btn_product_filter">فیلتر</button>
+    </div>
+</div>
+</div>
+{{#if results}}
+<div class="col l12">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <span class="pull-right"><strong>منتشر شده</strong></span>
+            <strong> <span class="text-danger">جستجو شده با: {{searchTerm}} </span></strong>
+        </li>
+        {{#each results}}
+        <li class="list-group-item">
+            <h4 class="pull-right text-danger" style="padding-left: 10px;"><a class="text-danger"
+                    href="/admin/product/delete/{{this._id}}"
+                    onclick="return confirm('آیا از حذف کالا اطمینان دارید؟');"> <i class="fa fa-trash-o"></i></a></h4>
+            <h4 class="pull-right"><input id="{{this._id}}" class="published_state" type="checkbox"
+                    {{checkedState this.productPublished}}></h4>
+            <h5><a href="/admin/product/edit/{{this._id}}">{{this.productTitle}}</a></h5>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{else}}
+<div class="col l12">
+    <div class="row">
+        {{#each top_results}}
+        <div class="card col s12 m6 l4">
+            <div class="card-content">
+                <h5>{{this.productTitle}}</h5>
+                <span>{{this.productPrice}}</span>
+            </div>
+            <div class="card-action">
+                <a href="/admin/product/edit/{{this._id}}">ویرایش</a>
+                <a href="/admin/product/delete/{{this._id}}"
+                    onclick="return confirm('آیا از حذف کالا اطمینان دارید؟');">
+                    حذف
+                </a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/if}}
 {{> partials/menu}}

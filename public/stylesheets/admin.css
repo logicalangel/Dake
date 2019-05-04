@@ -1,4 +1,6 @@
-.search-bar-input, #frm_search, .search-bar-input .btn{
+.search-bar-input,
+#frm_search,
+.search-bar-input .btn {
     padding-top: 10px;
     height: 45px;
 }
@@ -7,17 +9,17 @@
     padding-right: 0;
 }
 
-.productsWrapper{
+.productsWrapper {
     padding-right: 10px;
     padding-left: 10px;
 }
 
-.searchBarWrapper{
+.searchBarWrapper {
     padding-right: 0;
     padding-left: 0;
 }
 
-.footer{
+.footer {
     padding-top: 20px;
 }
 
@@ -25,73 +27,75 @@
     padding-bottom: 0;
 }
 
-.navbarMenuWrapper{
+nav {
+    border-top: 7px solid #1565c0;
+}
+
+.sidenav.sidenav-fixed {
+    right: 0;
+}
+
+header,
+main,
+footer,
+.fixed-action-btn {
+    padding-right: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+
+    header,
+    main,
+    footer {
+        padding-right: 0;
+    }
+}
+
+
+.navbarMenuWrapper {
     background-color: #f5f5f5;
 }
 
-.navbarMenu>ul>li>a:hover{
+.navbarMenu>ul>li>a:hover {
     color: #cc4135 !important;
 }
 
-.navbarMenu{
+.navbarMenu {
     padding-right: 0;
     padding-left: 0;
 }
 
-.product_wrapper>a:hover{
+.product_wrapper>a:hover {
     color: #cc4135 !important;
 }
 
-.navbar-static-top, #navbar, .navbar-header, #navbar>.navbar-nav, #navbar>.navbar-nav>li>a{
-    margin-bottom: 0;
-    height: 100px !important;
-}
-
-#navbar>.navbar-nav>li>a{
-    padding-top: 35px;
-}
-
-.pagination>li>a{
+.pagination>li>a {
     background-color: #cc4135 !important;
 }
 
-.navbar-brand{
-    color: #cc4135 !important;
-    letter-spacing: 4px;
-    padding-left: 20px !important;
-    padding-top: 20px !important;
-    height: 100px !important;
-    font-size: 55px !important;
-}
-
-.navbar-brand-image, .navbar-brand{
-    height: 80px;
-    padding-left: 10px;
-    padding-top: 10px;
-}
-
-.navbar-default .badge {
-    background-color: #cc4135;
-}
-
-.pushy-link, #empty-cart{
-    border-color: #E74C3C;
-    background-color: #E74C3C;
-}
-
-.pushy-link:hover, .pushy-link:focus, .pushy-link:active, .pushy-link:active:hover,
-#empty-cart:hover, #empty-cart:focus, #empty-cart:active, #empty-cart:active:hover{
+.pushy-link:hover,
+.pushy-link:focus,
+.pushy-link:active,
+.pushy-link:active:hover,
+#empty-cart:hover,
+#empty-cart:focus,
+#empty-cart:active,
+#empty-cart:active:hover {
     border-color: #cc4135;
     background-color: #cc4135;
 }
 
-.navActive>a{
+.navActive>a {
     margin-bottom: 0px;
     padding-top: 15px;
     border-bottom: 5px solid #E74C3C;
 }
 
-.navbar-static-top, #navbar, .navbar-header, #navbar>.navbar-nav, #navbar>.navbar-nav>li>a {
+.navbar-static-top,
+#navbar,
+.navbar-header,
+#navbar>.navbar-nav,
+#navbar>.navbar-nav>li>a {
     background-color: #fff;
 }
 
@@ -100,25 +104,25 @@
     font-size: 20px;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
     .navbar-default .navbar-brand {
         padding-top: 10px;
     }
 
-    .navbar-default .navbar-nav>li>a{
+    .navbar-default .navbar-nav>li>a {
         font-size: 16px;
     }
 
-    .searchBarWrapper{
+    .searchBarWrapper {
         padding-top: 10px;
     }
 
-    .navbarMenuWrapper{
+    .navbarMenuWrapper {
         padding-left: 0px;
         padding-right: 0px;
     }
 
-    .navbarMenuOuter{
+    .navbarMenuOuter {
         padding-left: 0;
         padding-right: 0;
     }
@@ -132,7 +136,7 @@
         padding-left: 7.5px;
     }
 
-    .navActive>a{
+    .navActive>a {
         color: white !important;
         background-color: #E74C3C;
         border-bottom: none;
@@ -141,4 +145,47 @@
     .footer {
         padding-top: 10px;
     }
+}
+
+/* RTL Fix */
+.select-wrapper input.select-dropdown {
+    padding-right: 30px;
+}
+
+.dropdown-content li>span {
+    text-align: right
+}
+
+.input-field>label:not(.label-icon).active {
+    -webkit-transform: translateY(-14px) scale(1);
+    transform: translateY(-14px) scale(1);
+    font-size: 0.8em
+}
+
+.input-field>label {
+    left: auto;
+}
+
+.input-field>label:not(.label-icon) {
+    right: 0 !important;
+}
+
+ul:not(.browser-default) {
+    padding-right: 0;
+}
+
+.sidenav.sidenav-fixed li {
+    padding: 5px 15px;
+}
+
+.sidenav.sidenav-fixed li i {
+    margin: 10px auto
+}
+
+.ql-snow .ql-picker-label {
+    padding: 3px 20px !important;
+}
+
+#editor {
+    direction: ltr
 }
