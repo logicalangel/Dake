@@ -2,8 +2,6 @@
     <div class="container-fluid">
         <div class="col-md-12 col-md-offset-2 navbarMenu">
             <ul class="nav navbar-nav">
-
-
                 <li class="pull-left col-md-4 searchBarWrapper">
                     <div class="search-bar-input input-group searchMenuLocation-{{config.menuLocation}} searchProPerRow-{{config.productsPerRow}}">
                         <input type="text" name="frm_search" id="frm_search" class="form-control"
@@ -13,7 +11,6 @@
                         </span>
                     </div>
                 </li>
-
                 <li {{#unless searchTerm}}class="pull-right navActive"{{/unless}}><a href="/">خانه</a></li>
                 {{#each menu.items}}
                     <li

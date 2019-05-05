@@ -132,7 +132,7 @@ router.get('/product/:id', (req, res) => {
             res.render('error', {title: 'Not found', message: 'Product not found', helpers: req.handlebars.helpers, config});
         }else{
             let productOptions = {};
-            if(result.productOptions){
+            if(result.productOptions && result.productOptions != 'undefined'){
                 productOptions = JSON.parse(result.productOptions);
             }
 

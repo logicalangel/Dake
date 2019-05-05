@@ -1,9 +1,9 @@
 <!--{{> themes/Cloth/front-menu}}-->
-<div class="container">
-    <div class="product-layout row">
+<div class="product-layout row white">
+    <div class="container">
         <div class="col s12 l6 left">
-            <h1 class="product-title-inner">{{result.productTitle}}</h1>
-            <h4 class="product-price-inner">{{result.productPrice}} {{currencySymbol config.currencySymbol}}</h4>
+            <h3 class="product-title-inner">{{result.productTitle}}</h3>
+            <span class="product-price-inner">{{result.productPrice}} {{currencySymbol config.currencySymbol}}</span>
             {{#if productOptions}}
             <div class="col-md-10">
                 {{#each productOptions}}
@@ -46,11 +46,10 @@
             </div>
             {{/ifCond}}
             {{/if}}
-            <div class="row productOptions">
-                <button class="btn-flat col right qty-btn-minus" type="button">-</button>
-                <input type="text" class="col right add-color text-center" id="product_quantity" maxlength="3"
-                    value="1">
-                <button class="btn-flat col right qty-btn-plus" type="button">+</button>
+            <div class="input-field productOptions">
+                <button class="btn-flat qty-btn-minus" type="button"><i class="material-icons">expand_less</i></button>
+                <input type="text" class="add-color" id="product_quantity" maxlength="3" value="1">
+                <button class="btn-flat qty-btn-plus" type="button"><i class="material-icons">expand_more</i></button>
             </div>
             {{#if result.productComment}}
             <!--<div class="col-md-5">
@@ -58,7 +57,8 @@
                 <textarea class="form-control" id="product_comment"></textarea>
             </div>-->
             {{/if}}
-            <button class="btn col s12 green product-add-to-cart" type="button">افرودن به سبد</button>
+            <button class="btn-large green product-add-to-cart"><i
+                    class="material-icons right">add_shopping_cart</i>افرودن به سبد</button>
         </div>
         <div class="col s12 l6 right">
             {{#ifCond images.length '>' 1}}
@@ -70,7 +70,6 @@
                     {{/each}}
 
                 </div>
-                <!-- Add Arrows -->
                 <div class="swiper-button-next swiper-button-white"></div>
                 <div class="swiper-button-prev swiper-button-white"></div>
             </div>
@@ -82,54 +81,45 @@
                     {{/each}}
                 </div>
             </div>
-
-
-            <!--<div class="carousel">
-                {{#each images}}
-                <a class="carousel-item" href="#"><img class="materialboxed" src="{{this.path}}"></a>
-                {{/each}}
-            </div>-->
             {{/ifCond}}
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
         {{#ifCond productDescription '!=' "undefined"}}
-        <div class="col s12 col m12">
-            <div class="col-md-12 body_text">
-                {{{productDescription}}}
-            </div>
+        <div class="col s12 body_text">
+            <h5>توضیحات محصول</h5>
+            {{{productDescription}}}
         </div>
         {{/ifCond}}
     </div>
 </div>
+
 <input type="hidden" id="productId" value="{{result._id}}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        loop: true,
-        freeMode: true,
-        loopedSlides: 5, //looped slides should be the same
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-    });
-    var galleryTop = new Swiper('.gallery-top', {
-        spaceBetween: 10,
-        loop: true,
-        loopedSlides: 5, //looped slides should be the same
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        thumbs: {
-            swiper: galleryThumbs,
-        },
-    });
-
     $(document).ready(function () {
-        $('.carousel').carousel({
-            options: {
-                dist: 0
-            }
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            loop: true,
+            freeMode: true,
+            loopedSlides: 5, //looped slides should be the same
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+        });
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 10,
+            loop: true,
+            loopedSlides: 5, //looped slides should be the same
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            thumbs: {
+                swiper: galleryThumbs,
+            },
         });
         $('.materialboxed').materialbox();
     });
