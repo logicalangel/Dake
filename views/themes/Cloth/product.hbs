@@ -1,16 +1,7 @@
 <!--{{> themes/Cloth/front-menu}}-->
 <div class="container">
     <div class="product-layout row">
-        <div class="col s12">
-            {{#ifCond images.length '>' 1}}
-            <div class="carousel">
-                {{#each images}}
-                <a class="carousel-item" href="#"><img class="materialboxed" src="{{this.path}}"></a>
-                {{/each}}
-            </div>
-            {{/ifCond}}
-        </div>
-        <div class="col s12 l7 right">
+        <div class="col s12 l6 left">
             <h1 class="product-title-inner">{{result.productTitle}}</h1>
             <h4 class="product-price-inner">{{result.productPrice}} {{currencySymbol config.currencySymbol}}</h4>
             {{#if productOptions}}
@@ -69,18 +60,36 @@
             {{/if}}
             <button class="btn col s12 green product-add-to-cart" type="button">افرودن به سبد</button>
         </div>
-        <div class="col s12 l5 left">
-            {{#if result.productImage}}
-            <div class="title-image-container">
-                <div class="image-prev image-button"> <i class="fa fa-chevron-left" aria-hidden="true"></i></div>
-                <img src="{{result.productImage}}" id="product-title-image" class="product-title-image responsive-img"
-                    alt="...">
-                <div class="image-next image-button"> <i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+        <div class="col s12 l6 right">
+            {{#ifCond images.length '>' 1}}
+            <div class="swiper-container gallery-top">
+                <div class="swiper-wrapper">
+                    {{#each images}}
+                    <div class="swiper-slide" style="background-image:url({{this.path}})">
+                    </div>
+                    {{/each}}
+
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next swiper-button-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
             </div>
-            {{else}}
-            <img src="/uploads/placeholder.png" id="product-title-image" class="product-title-image img-responsive"
-                alt="...">
-            {{/if}}
+            <div class="swiper-container gallery-thumbs">
+                <div class="swiper-wrapper">
+                    {{#each images}}
+                    <div class="swiper-slide" style="background-image:url({{this.path}})">
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+
+            <!--<div class="carousel">
+                {{#each images}}
+                <a class="carousel-item" href="#"><img class="materialboxed" src="{{this.path}}"></a>
+                {{/each}}
+            </div>-->
+            {{/ifCond}}
         </div>
         {{#ifCond productDescription '!=' "undefined"}}
         <div class="col s12 col m12">
@@ -92,8 +101,30 @@
     </div>
 </div>
 <input type="hidden" id="productId" value="{{result._id}}">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        loop: true,
+        freeMode: true,
+        loopedSlides: 5, //looped slides should be the same
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+    });
+    var galleryTop = new Swiper('.gallery-top', {
+        spaceBetween: 10,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+            swiper: galleryThumbs,
+        },
+    });
+
     $(document).ready(function () {
         $('.carousel').carousel({
             options: {

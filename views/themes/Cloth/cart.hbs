@@ -1,35 +1,56 @@
 <div class="row">
-    <div class="col-xs-12 col s12">
+    <div class="col s12">
         {{#if pageCloseBtn}}
         <div class="row {{checkout}}">
-            <div class="col-lg-12 col l12 text-right">
-                <button class="pushy-link btn btn-primary" type="button">X</button>
+            <div class="col l12 text-right">
+                <button class="btn-flat" style="font-size: 2em;margin-top:10px" type="button">X</button>
             </div>
         </div>
         {{/if}}
         <div class="panel panel-default" style="margin-top: 30px;">
-            <div class="panel-heading">محتوای سبد خرید</div>
+            <div class="panel-heading">
+                <h4>سبد خرید شما</h4>
+            </div>
             <div class="panel-body cart-body">
-                <div class="container-fluid">
+                <div class="container">
                     {{#each session.cart}}
                     <div class="row cart-row">
-                        <div class="col-xs-4 col-md-2 col s4 m2">
-                            {{#if productImage}}
-                            <img class="img-responsive" src="{{this.productImage}}" alt="{{this.title}} product image"> {{else}}
-                            <img class="img-responsive" src="/uploads/placeholder.png" alt="{{this.title}} product image"> {{/if}}
+                        <div class="col s12">
+                            <h2 class="header"><a class="cart-link" href="/product/{{this.link}}">{{this.title}}</a>
+                            </h2>
+                            <div class="card horizontal">
+                                <div class="card-image">
+                                    {{#if productImage}}
+                                    <img src="{{this.productImage}}" alt="{{this.title}} product image">
+                                    {{else}}
+                                    <img src="/uploads/placeholder.png" alt="{{this.title}} product image"> {{/if}}
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <p>I am a very simple card. I am good at containing small bits of information.
+                                        </p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a
+                                            href="#"><strong>{{currencySymbol ../config.currencySymbol}}{{formatAmount this.totalItemPrice}}</strong></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="cart-item-row text-left col-xs-12 col-md-7 col s12 m7">
+
+
+                        <!--<div class="cart-item-row text-left col-xs-12 col-md-7 col s12 m7">
                             <p>
                                 <a class="cart-link" href="/product/{{this.link}}">{{this.title}}</a>
                             </p>
                             <p>
                                 &nbsp;
                                 {{#each this.options}}
-                                    {{#if @last}}
-                                        {{@key}}: {{this}}
-                                        {{else}}
-                                        {{@key}}: {{this}} /
-                                    {{/if}}
+                                {{#if @last}}
+                                {{@key}}: {{this}}
+                                {{else}}
+                                {{@key}}: {{this}} /
+                                {{/if}}
                                 {{/each}}
                             </p>
                             <p>
@@ -37,28 +58,31 @@
                                     <div class="col-lg-5 col l5 no-pad-left">
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-qty-minus" type="button">-</button>
+                                                <button class="btn btn-sm btn-primary btn-qty-minus"
+                                                    type="button">-</button>
                                             </span>
-                                            <input type="number" class="form-control cart-product-quantity input-sm text-center" data-id="{{this.productId}}" id="{{@key}}"
-                                                maxlength="2" value="{{this.quantity}}">
+                                            <input type="number"
+                                                class="form-control cart-product-quantity input-sm text-center"
+                                                data-id="{{this.productId}}" id="{{@key}}" maxlength="2"
+                                                value="{{this.quantity}}">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-qty-add" type="button">+</button>
+                                                <button class="btn btn-sm btn-primary btn-qty-add"
+                                                    type="button">+</button>
                                             </span>
                                         </div>
                                     </div>
                                     <span class="pull-right">
-                                        <button class="btn btn-sm btn-danger btn-delete-from-cart" data-id="{{this.productId}}" type="button"><i class="fa fa-trash" data-id="{{this.productId}}" aria-hidden="true"></i></button>
+                                        <button class="btn btn-sm btn-danger btn-delete-from-cart"
+                                            data-id="{{this.productId}}" type="button"><i class="fa fa-trash"
+                                                data-id="{{this.productId}}" aria-hidden="true"></i></button>
                                     </span>
                                 </div>
                             </p>
-                        </div>
-                        <div class="col-xs-12 col-lg-4 col s12 l4 cart-item-row text-right no-pad-right">
-                            <strong>{{currencySymbol ../config.currencySymbol}}{{formatAmount this.totalItemPrice}}</strong>
-                        </div>
+                        </div>-->
                     </div>
                     {{/each}}
                 </div>
-                <div class="container-fluid">
+                <div class="container">
                     {{#if session.cart}}
                     <div class="row">
                         <div class="cart-contents-shipping col-md-12 col m12 no-pad-right">
@@ -75,14 +99,16 @@
                             {{/ifCond}}
                             <div class="text-right">
                                 مجموع:
-                                <strong>{{formatAmount session.totalCartAmount}} {{currencySymbol config.currencySymbol}}</strong>
+                                <strong>{{formatAmount session.totalCartAmount}}
+                                    {{currencySymbol config.currencySymbol}}</strong>
                             </div>
                         </div>
                     </div>
                     {{else}}
-                    <div class="row">
-                        <div class="cart-contents-shipping col-md-12 no-pad-right">
-                            سبد خالی میباشد
+                    <div class="row center" style="border: 4px dashed #EEE; padding:10px;">
+                        <div class="cart-contents-shipping col s12 no-pad-right">
+                            <i class="material-icons" style="font-size: 55px;">close</i><br>
+                            <h5>سبد خالی میباشد</h5>
                         </div>
                     </div>
                     {{/if}}

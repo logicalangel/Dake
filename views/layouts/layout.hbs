@@ -20,6 +20,7 @@
     {{/if}}
     <meta name="keywords" content="{{config.cartTitle}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
     <link rel="stylesheet" href="/stylesheets/pushy.css">
     <link rel="stylesheet" href="/stylesheets/cdns/codemirror.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -175,13 +176,25 @@
         <input type="hidden" id="cartTheme" value="{{config.theme}}">
         <div id="notify_message"></div>
         {{#if showFooter}}
-        <footer class="footer">
-            <div class="container-fluid">
-                {{#isNull config.footerHtml}}
-                <h4 class="text-center">Digi Node</h4>
-                {{else}}
-                {{{config.footerHtml}}}
-                {{/isNull}}
+        <footer class="grey lighten-2">
+            <div class="row">
+                <div class="s12 l4">
+                    <ul>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row grey darken-4">
+                <div class="col s12">
+                    <div class="container">
+                        {{#isNull config.footerHtml}}
+                        <span class="white-text">قدرت گرفته از <a href="#">دکه</a></span>
+                        {{else}}
+                        {{{config.footerHtml}}}
+                        {{/isNull}}
+                    </div>
+
+                </div>
             </div>
         </footer>
         {{/if}}

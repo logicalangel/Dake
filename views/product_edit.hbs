@@ -1,191 +1,182 @@
-<div class="col-lg-9">
-    <form method="post" class="form-horizontal" id="insert_form" action="/admin/product/update" data-toggle="validator">
-        <div class="col-lg-12">
+<div class="row">
+    <div class="col s12">
+        <form method="post" id="insert_form" action="/admin/product/update" data-toggle="validator">
             <div class="page-header">
-                <div class="pull-right">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">افزودن تصویر</button>
-                    <button id="frm_edit_product_save" class="btn btn-success">ذخیره سازی کالا <i class="fa fa-floppy-o"></i></button>
-                </div>
-                <h2>ویرایش کالا</h2>
+                <h2>ویرایش کالا </h2>
             </div>
-            <div class="form-group">
-                <label for="frmProductTitle" class="col-sm-2 control-label">عنوان کالا *</label>
-                <div class="col-sm-10">
-                    <input type="text" name="frmProductTitle" class="form-control" minlength="5" maxlength="200" value="{{result.productTitle}}" required/>
-                </div>
+            <div class="input-field col s12">
+                <label for="frmProductTitle">عنوان کالا *</label>
+                <input type="text" id="frmProductTitle" name="frmProductTitle" minlength="5" maxlength="200"
+                    value="{{result.productTitle}}" required />
             </div>
-            <div class="form-group">
-                <label for="frmProductPrice" class="col-sm-2 control-label">قیمت کالا *</label>
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">{{currencySymbol config.currencySymbol}}</span>
-                        <input type="number" name="frmProductPrice" class="form-control" value="{{result.productPrice}}" step="any" required/>
-                    </div>
-                </div>
+            <div class="input-field col s12">
+                <label for="frmProductPrice">قیمت کالا * «ریال»</label>
+                <input type="number" name="frmProductPrice" step="any" value="{{result.productPrice}}" required />
             </div>
-            <div class="form-group">
-                <label for="frmProductPublished" class="col-sm-2 control-label">وضعیت</label>
-                <div class="col-sm-6">
-                    <select class="form-control" id="frmProductPublished" name="frmProductPublished">
-                        <option value="true"  {{selectState result.productPublished "true"}}>منتشر شده</option>
-                        <option value="false" {{selectState result.productPublished "false"}}>چرک نویس</option>
-                    </select>
-                </div>
+            <div class="input-field col s12">
+                <select name="frmProductPublished">
+                    <option value="true" {{selectState result.productPublished "true"}}>منتشر شده</option>
+                    <option value="false" {{selectState result.productPublished "false"}}>چرکنویس</option>
+                </select>
+                <label>وضعیت</label>
             </div>
             {{#if config.trackStock}}
-            <div class="form-group">
-                <label for="frmProductStock" class="col-sm-2 control-label">سطح انبار</label>
-                <div class="col-sm-6">
-                    <input type="number" name="frmProductStock" class="form-control" value="{{result.productStock}}" step="any" />
-                </div>
+            <div class="input-field col s12">
+                <label for="frmProductStock">سطح انبار</label>
+                <input type="number" name="frmProductStock" value="{{result.productStock}}" step="any" />
             </div>
             {{/if}}
-            <div class="form-group">
-                <label for="editor" class="col-sm-2 control-label">توضیحات کالا *</label>
-                <div class="col-sm-10">
-                    <textarea id="editor" minlength="5" rows="10" id="frmProductDescription" name="frmProductDescription" class="form-control" required>{{result.productDescription}}</textarea>
+            <div class="input-field col s12">
+                <label for="frmProductTags">برچسب های کالا</label>
+                <input type="text" id="frmProductTags" name="frmProductTags" value="{{result.productTags}}">
+            </div>
+            <div class="input-field col s12">
+                <p>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked" id="frmProductComment"
+                            {{checkedState result.productComment}} name="frmProductComment" /> <span>قابلیت نظر دهی به
+                            کالا</span>
+                    </label>
+                </p>
+            </div>
+            <div class="input-field col s12" id="editor-wrapper">
+                <p><label for="editor">توضیحات کالا *</label></p>
+                <div id="editor" name="frmProductDescription">
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">لینک همیشگی</label>
-                <div class="col-sm-10">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="frmProductPermalink" id="frmProductPermalink" placeholder="لینک این کالا" value={{result.productPermalink}}>
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" id="validate_permalink" type="button">صحت لینک</button>
-                        </span>
-                    </div>
-                    <p class="help-block">ایجاد یک لینک خوانا برای کالا</p>
-                </div>
+            <div class="input-field col s12">
+                <label for="frmProductPermalink">لینک همیشگی</label>
+                <input type="text" name="frmProductPermalink" id="frmProductPermalink"
+                    value={{result.productPermalink}}>
+                <button class="btn green" id="validate_permalink" type="button">صحت لینک</button>
             </div>
-            <div class="form-group">
+            <!--div class="form-group col s12">
                 <input type="hidden" id="productOptJson" name="productOptJson" value="{{result.productOptions}}" />
                 <label for="editor" class="col-sm-2 control-label">تنظیمات فیلدهای اضافه کالا</label>
                 <div class="col-lg-10">
                     <ul class="list-group" id="product_opt_wrapper">
                         <li class="list-group-item">
                             <div class="row">
-                            <div class="col-lg-2">
-                                <strong>نام:</strong>
-                                <input type="text" id="product_optName" class="form-control" placeholder="سایز" />
+                                <div class="col-lg-2">
+                                    <strong>نام:</strong>
+                                    <input type="text" id="product_optName" class="form-control" placeholder="سایز" />
+                                </div>
+                                <div class="col-lg-2">
+                                    <strong>برچسب:</strong>
+                                    <input type="text" id="product_optLabel" class="form-control"
+                                        placeholder="انتخاب سایز" />
+                                </div>
+                                <div class="col-lg-2">
+                                    <strong>نوع:</strong>
+                                    <select id="product_optType" class="form-control">
+                                        <option value="select">Select</option>
+                                        <option value="radio">Radio</option>
+                                        <option value="checkbox">Checkbox</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4">
+                                    <strong>گزینه ها:</strong>
+                                    <input type="text" id="product_optOptions" class="form-control"
+                                        placeholder="یک ، لیست ، که ، با کاما ، جدا میشوند" />
+                                </div>
+                                <div class="col-lg-2 text-right"></br>
+                                    <button id="product_opt_add" class="btn btn-success">افزودن</button>
+                                </div>
                             </div>
-                            <div class="col-lg-2">
-                                <strong>برچسب:</strong>
-                                <input type="text" id="product_optLabel" class="form-control" placeholder="انتخاب سایز"/>
-                            </div>
-                            <div class="col-lg-2">
-                                <strong>نوع:</strong>
-                                <select id="product_optType" class="form-control">
-                                    <option value="select">Select</option>
-                                    <option value="radio">Radio</option>
-                                    <option value="checkbox">Checkbox</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4">
-                                <strong>گزینه ها:</strong>
-                                <input type="text" id="product_optOptions" class="form-control" placeholder="یک ، لیست ، که ، با کاما ، جدا میشوند"/>
-                            </div>
-                            <div class="col-lg-2 text-right"></br>
-                                <button id="product_opt_add" class="btn btn-success">افزودن</button>
-                            </div></div>
                         </li>
                         {{#each options}}
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class='col-lg-2 opt-name'>{{this.optName}}</div>
-                                    <div class='col-lg-2'>{{this.optLabel}}</div>
-                                    <div class='col-lg-2'>{{this.optType}}</div>
-                                    <div class='col-lg-4'>{{{this.optOptions}}}</div>
-                                    <div class='col-lg-2 text-right'>
-                                        <button class='product_opt_remove btn btn-danger btn-sm'>حذف</button>
-                                    </div>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class='col-lg-2 opt-name'>{{this.optName}}</div>
+                                <div class='col-lg-2'>{{this.optLabel}}</div>
+                                <div class='col-lg-2'>{{this.optType}}</div>
+                                <div class='col-lg-4'>{{{this.optOptions}}}</div>
+                                <div class='col-lg-2 text-right'>
+                                    <button class='product_opt_remove btn btn-danger btn-sm'>حذف</button>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                         {{/each}}
                     </ul>
                     <p class="help-block">گزینه های کالا را در این قسمت میتوانید تنظیم کنید : رنگ ، سایز و ...</p>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="frmProductComment" class="col-sm-2 control-label">قابلیت نظر دهی به کالا</label>
-                <div class="col-sm-10">
-                    <div class="checkbox">
-                        <label>
-                            <input class="frmProductComment" type="checkbox" {{checkedState result.productComment}} id="frmProductComment"
-                                name="frmProductComment">
-                        </label>
-                    </div>
-                    <p class="help-block">اجازه ارسال نظر به شکل آزاد در هنگام اضافه کردن محصولات به سبد خرید</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="frmProductTags" class="col-sm-2 control-label">برچسب های کالا</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="frmProductTags" name="frmProductTags" value="{{result.productTags}}">
-                    <p class="help-block">برچسب ها برای ایندکس شدن و فیلتر کردن راحتتر کالا ها استفاده میشوند . </p>
-                </div>
-            </div>
-            <div id="product-images">
-                <h2>تصویر کالا</h2>
+            </div>-->
+            <div id="product-images col s12">
+                <h2>تصویر کالا
+                    <button class="btn blue left modal-trigger" data-target="myModal">
+                        افزودن تصویر
+                        <i class="material-icons right">add</i>
+                    </button>
+                </h2>
                 {{#if images}}
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-2">
                     {{#each images}}
-                        <div class="col-md-3">
-                            <p>
-                                <a data-id="{{this.path}}" class="btn-delete-image btn btn-danger btn-sm">حذف</a>
+                    <div class="col s12 m6 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{{this.path}}" class="responsive-img">
+                            </div>
+                            <div class="card-action">
+                                <a href="#" data-id="{{this.path}}">حذف</a>
                                 {{#ifCond this.productImage '==' true}}
-                                    <span class="label label-info">تصویر اصلی</span>
+                                <span class="chip">تصویر اصلی</span>
                                 {{else}}
-                                    <a data-id="{{this.path}}" class="set-as-main-image btn btn-sm btn-success">تصویر اصلی شود</a>
+                                <a href="#" data-id="{{this.path}}">تصویر اصلی شود</a>
                                 {{/ifCond}}
-                            </p>
-                            <img src="{{this.path}}" class="product-main-image img-responsive">
+                            </div>
                         </div>
-                    {{/each}}
                     </div>
+                    {{/each}}
                 </div>
                 {{else}}
-                    <h4 class="text-warning">تصویری برای کالا انتخاب نشده است </h4>
+                <h4 class="text-warning">تصویری برای کالا انتخاب نشده است </h4>
                 {{/if}}
             </div>
-        </div>
-        <input type="hidden" name="frmProductId" id="frmProductId" value="{{result._id}}" />
-    </form>
+            <div class="col s12">
+                <div class="fixed-action-btn">
+                    <button id="frm_edit_product_save" class="btn-floating btn-large red">
+                        <i class="large material-icons">edit</i>
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" name="frmProductId" id="frmProductId" value="{{result._id}}" />
+        </form>
+    </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="post" id="upload_form" name="upload_form" action="/admin/file/upload" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">بستن</span></button>
-                    <h4 class="modal-title" id="myModalLabel">آپلود تصویر کالا</h4>
-                </div>
-                <div class="modal-body">
-                    <span class="btn btn-info btn-file">
-                        انتخاب فایل<input type="file" name="upload_file" id="upload_file">
-                    </span>
-                    <input type="hidden" id="productId" name="productId" value="{{result._id}}"/>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
-                    <button type="submit" id="saveButton" name="saveButton" class="btn btn-primary">آپلود</button>
-                </div>
-            </form>
-        </div>
+<div class="modal" id="myModal">
+    <div class="modal-content">
+        <form method="post" id="upload_form" name="upload_form" action="/admin/file/upload"
+            enctype="multipart/form-data">
+            <div class="modal-content">
+                <h4>آپلود تصویر کالا</h4>
+                <span class="btn-large btn-file">
+                    انتخاب فایل<input type="file" name="upload_file" id="upload_file">
+                </span>
+                <input type="hidden" id="productId" name="productId" value="{{result._id}}" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn " data-dismiss="modal">انصراف</button>
+                <button type="submit" id="saveButton" name="saveButton" class="btn btn-primary">آپلود</button>
+            </div>
+        </form>
     </div>
 </div>
 {{> partials/menu}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#editor').summernote({
-            height: 300,
-            minHeight: null
+    $(document).ready(function () {
+        $('select').formSelect();
+        $('.modal').modal();
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+        quill.clipboard.dangerouslyPasteHTML(0, "{{ result.productDescription }}");
+        $("#insert_form").on("submit", function () {
+            var hvalue = $('#editor').html();
+            $(this).append("<textarea name='frmProductDescription' style='display:none'>" + hvalue + "</textarea>");
         });
     });
 </script>

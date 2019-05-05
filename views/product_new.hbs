@@ -3,8 +3,6 @@
         <form method="post" id="insert_form" action="/admin/product/insert" data-toggle="validator">
             <div class="page-header">
                 <h2>کالای جدید
-                    <button id="frm_edit_product_save" class="btn green left" type="submit">افزودن کالا <i
-                            class="fa fa-plus"></i></button>
                 </h2>
             </div>
             <div class="input-field col s12">
@@ -50,11 +48,9 @@
             <div class="input-field col s12">
                 <label for="frmProductPermalink">لینک همیشگی</label>
                 <input type="text" name="frmProductPermalink" id="frmProductPermalink" value={{productPermalink}}>
-                <button class="btn btn-success" id="validate_permalink" type="button">صحت لینک</button>
-                <p class="help-block">ایجاد یک لینک خوانا برای کالا</p>
+                <button class="btn green" id="validate_permalink" type="button">صحت لینک</button>
             </div>
-
-            <div class="input-field col s12">
+            <!--<div class="input-field col s12">
                 <h4>افزودن خصوصیات بیشتر</h4>
                 <input type="hidden" id="productOptJson" name="productOptJson" value="{{result.productOptions}}" />
                 <ul class="list-group" id="product_opt_wrapper">
@@ -102,11 +98,17 @@
                     {{/each}}
                 </ul>
                 <small>گزینه های کالا را در این قسمت میتوانید تنظیم کنید : رنگ ، سایز و ...</small>
+            </div>-->
+            <div class="col s12">
+                <div class="fixed-action-btn">
+                    <button id="frm_edit_product_save" class="btn-floating btn-large red">
+                        <i class="large material-icons">add</i>
+                    </button>
+                </div>
             </div>
-
+        </form>
     </div>
 </div>
-</form>
 {{> partials/menu}}
 
 
